@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#04070C;font-family:'IBM Plex Sans',sans-serif;color:#EAF2F6}
@@ -17,37 +17,46 @@ a{color:#21DFF0;text-decoration:none}
 a:hover{color:#7FEDF7}
 ::selection{background:rgba(33,223,240,.25)}
 @keyframes plumeFlicker{0%,100%{opacity:1}45%{opacity:.82}60%{opacity:.95}75%{opacity:.86}}
-@keyframes plumeRise{0%{background-position:0 0}100%{background-position:0 -600px}}
 @keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(40px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </helmet>
 
+<x-import component-from-global-scope="auth-gate" from="./auth-gate.js" hint-size="0,0"></x-import>
+
 <div style="min-height:100vh;background:#04070C;overflow:hidden;position:relative">
 
-  <!-- starfield -->
-  <div style="position:absolute;inset:-40px 0 0 0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,rgba(234,242,246,.55) 50%,transparent 51%),radial-gradient(1px 1px at 78% 14%,rgba(234,242,246,.4) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 32% 64%,rgba(234,242,246,.3) 50%,transparent 51%),radial-gradient(1px 1px at 64% 42%,rgba(234,242,246,.45) 50%,transparent 51%),radial-gradient(1px 1px at 88% 72%,rgba(234,242,246,.35) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 45% 12%,rgba(33,223,240,.4) 50%,transparent 51%),radial-gradient(1px 1px at 22% 86%,rgba(234,242,246,.3) 50%,transparent 51%),radial-gradient(1px 1px at 56% 88%,rgba(234,242,246,.4) 50%,transparent 51%);animation:starDrift 60s linear infinite alternate"></div>
+  <!-- deep starfield (slowest layer) -->
+  <div data-para="0.22" style="position:fixed;inset:-60px 0;pointer-events:none;z-index:0;background-image:radial-gradient(1px 1px at 12% 22%,rgba(234,242,246,.4) 50%,transparent 51%),radial-gradient(1px 1px at 78% 14%,rgba(234,242,246,.3) 50%,transparent 51%),radial-gradient(1px 1px at 64% 42%,rgba(234,242,246,.32) 50%,transparent 51%),radial-gradient(1px 1px at 88% 72%,rgba(234,242,246,.25) 50%,transparent 51%),radial-gradient(1px 1px at 22% 86%,rgba(234,242,246,.22) 50%,transparent 51%),radial-gradient(1px 1px at 56% 88%,rgba(234,242,246,.3) 50%,transparent 51%)"></div>
+  <!-- near starfield (faster layer = perceived depth) -->
+  <div data-para="0.45" style="position:fixed;inset:-60px 0;pointer-events:none;z-index:0;background-image:radial-gradient(1.6px 1.6px at 32% 64%,rgba(234,242,246,.5) 50%,transparent 51%),radial-gradient(1.6px 1.6px at 45% 12%,rgba(33,223,240,.45) 50%,transparent 51%),radial-gradient(1.4px 1.4px at 70% 58%,rgba(234,242,246,.42) 50%,transparent 51%),radial-gradient(1.4px 1.4px at 15% 48%,rgba(234,242,246,.38) 50%,transparent 51%);animation:starDrift 60s linear infinite alternate"></div>
 
   <!-- ============ NAV ============ -->
-  <nav data-screen-label="Nav" style="position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:26px 48px">
-    <a href="#" style="display:flex;align-items:center;gap:9px">
+  <nav data-screen-label="Nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:14px;padding:16px clamp(20px,4vw,48px);background:rgba(4,7,12,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(160,220,235,0.1)">
+    <a href="#" style="display:flex;align-items:center;gap:9px;white-space:nowrap;flex:none">
       <span style="display:block;width:3px;height:22px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
       <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
     </a>
-    <div style="display:flex;align-items:center;gap:40px">
-      <a href="#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0" style-hover="color:#EAF2F6">SECTORS</a>
-      <a href="#intelligence" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0" style-hover="color:#EAF2F6">INTELLIGENCE</a>
-      <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0" style-hover="color:#EAF2F6">MISSION CONTROL</a>
-      <a href="#leadership" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0" style-hover="color:#EAF2F6">LEADERSHIP</a>
-      <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;transition:all .2s" style-hover="background:rgba(33,223,240,0.1);color:#7FEDF7">INITIATE CONTACT</a>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:clamp(14px,2.5vw,40px)">
+      <a href="#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
+      <a href="#intelligence" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
+      <a href="#leadership" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
+      <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
+      <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none;transition:all .2s" style-hover="background:rgba(33,223,240,0.1);color:#7FEDF7">CONTACT</a>
     </div>
   </nav>
 
   <!-- ============ HERO ============ -->
-  <section data-screen-label="Hero" style="position:relative;min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 48px 96px;text-align:center">
+  <section data-screen-label="Hero" style="position:relative;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(140px,22vw,120px) 48px 120px;text-align:center;z-index:1">
 
-    <!-- plume -->
+    <!-- perspective grid floor: the "launch pad" plane -->
+    <div style="position:absolute;left:-20%;right:-20%;bottom:-60px;height:360px;pointer-events:none;overflow:hidden">
+      <div style="width:100%;height:100%;transform:perspective(620px) rotateX(63deg);transform-origin:50% 0;background-image:linear-gradient(rgba(33,223,240,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(33,223,240,0.08) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 55% 80% at 50% 0%,#000 0%,transparent 72%);mask-image:radial-gradient(ellipse 55% 80% at 50% 0%,#000 0%,transparent 72%)"></div>
+    </div>
+
+    <!-- plume (mid layer, parallax) -->
     <sc-if value="{{ animatePlume }}" hint-placeholder-val="{{ true }}">
-      <div style="position:absolute;left:50%;top:6%;transform:translateX(-50%);width:120px;height:94%;pointer-events:none">
+      <div data-para="0.32" style="position:absolute;left:50%;top:6%;margin-left:-60px;width:120px;height:94%;pointer-events:none">
         <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:10px;height:100%;background:linear-gradient(180deg,rgba(234,251,253,0) 0%,#EAFBFD 18%,#9DEFF7 40%,rgba(33,223,240,0.55) 65%,rgba(33,223,240,0) 100%);filter:blur(3px);animation:plumeFlicker 3.2s ease-in-out infinite"></div>
         <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:2px;height:100%;background:linear-gradient(180deg,rgba(234,251,253,0) 0%,#FFFFFF 20%,rgba(234,251,253,0.8) 55%,rgba(33,223,240,0) 100%)"></div>
         <div style="position:absolute;left:50%;top:10%;transform:translateX(-50%);width:120px;height:80%;background:radial-gradient(ellipse 50% 45% at 50% 30%,rgba(33,223,240,0.16) 0%,rgba(33,223,240,0) 70%);animation:plumeFlicker 4.5s ease-in-out infinite"></div>
@@ -61,15 +70,16 @@ a:hover{color:#7FEDF7}
       <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;color:#8FA3B0;writing-mode:vertical-rl">GROUND</span>
     </div>
 
-    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:36px">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;color:#21DFF0;border:1px solid rgba(33,223,240,0.35);padding:11px 26px;background:rgba(4,7,12,0.5)">GROWTH · SCALE-UP · LEADERSHIP</div>
+    <!-- foreground content (slight counter-parallax = closest layer) -->
+    <div data-para="-0.06" style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;color:#21DFF0;border:1px solid rgba(33,223,240,0.35);padding:11px 26px;background:rgba(4,7,12,0.5)">DEVELOPMENT&nbsp;<span style="letter-spacing: 3.52px;">· GROWTH&nbsp;</span><span style="letter-spacing: 3.52px;">· UPSCALING</span></div>
       <div style="display:flex;flex-direction:column;gap:4px">
         <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:#EAF2F6;text-shadow:0 0 60px rgba(33,223,240,0.18)">VERTICΛL</h1>
-        <div style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:rgba(234,242,246,0.13)">ΛDVISORY</div>
+        <div data-para="0.05" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:rgba(234,242,246,0.13)">ΛDVISORY</div>
       </div>
-      <p style="margin:0;max-width:520px;font-size:17px;line-height:1.7;color:#8FA3B0">Strategic advisory for the space economy — from first ignition to sovereign scale.</p>
+      <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.7; color: #8FA3B0; text-transform: uppercase">Strategic consulting for the space economy</p>
       <div style="display:flex;gap:18px">
-        <a href="#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.28em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:16px 34px;background:rgba(4,7,12,0.5);transition:all .2s" style-hover="background:rgba(33,223,240,0.12)">EXPLORE OUR ORBIT</a>
+        <a href="#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.28em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:16px 34px;background:rgba(4,7,12,0.5);transition:all .25s" style-hover="background:rgba(33,223,240,0.12);box-shadow:0 14px 44px rgba(0,0,0,0.5)">EXPLORE</a>
       </div>
     </div>
 
@@ -83,20 +93,20 @@ a:hover{color:#7FEDF7}
   <!-- ============ SECTORS ============ -->
   <section id="sectors" data-screen-label="Sectors" style="position:relative;z-index:2;padding:110px 48px;border-top:1px solid rgba(160,220,235,0.1);background:linear-gradient(180deg,#04070C 0%,#070D14 100%)">
     <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+      <div data-reveal="" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
         <div style="display:flex;flex-direction:column;gap:16px">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">01 / SECTORS</span>
           <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6">WHERE WE OPERΛTE</h2>
         </div>
-        <p style="margin:0;max-width:380px;font-size:14.5px;line-height:1.7;color:#8FA3B0">Deep operating experience across the full launch stack — vehicle to orbit to ground.</p>
+        <p style="margin:0;max-width:380px;font-size:14.5px;line-height:1.7;color:#8FA3B0">Supporting strategic and tactical decisions across the full stakeholders' ecosystem.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(160,220,235,0.1);border:1px solid rgba(160,220,235,0.1)">
-        <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="4">
-          <div style="background:#070D14;padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:220px;transition:background .25s;cursor:pointer" style-hover="background:#0A1420">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0">{{ s.code }}</span>
-            <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35">{{ s.name }}</h3>
-            <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1">{{ s.desc }}</p>
-            <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0))"></span>
+      <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;perspective:1400px">
+        <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="5">
+          <div onClick="{{ s.openModal }}" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:220px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">{{ s.code }}</span>
+            <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">{{ s.name }}</h3>
+            <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">{{ s.desc }}</p>
+            <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
           </div>
         </sc-for>
       </div>
@@ -106,196 +116,279 @@ a:hover{color:#7FEDF7}
   <!-- ============ INTELLIGENCE ============ -->
   <section id="intelligence" data-screen-label="Intelligence" style="position:relative;z-index:2;padding:110px 48px;background:#070D14;border-top:1px solid rgba(160,220,235,0.1)">
     <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:24px">
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:24px">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">02 / INTELLIGENCE</span>
-        <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6;line-height:1.2">SIGNΛL,<br>NOT NOISE</h2>
-        <p style="margin:0;max-width:440px;font-size:15px;line-height:1.75;color:#8FA3B0">Monthly intelligence briefings on launch cadence, capital flows, and regulatory shifts — written for operators making capital decisions, not spectators.</p>
+        <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6;line-height:1.2">BRIEFINGS</h2>
+        <p style="margin:0;max-width:440px;font-size:15px;line-height:1.75;color:#8FA3B0">Periodic intelligence briefings based on facts: capital flows, regulatory shifts,&nbsp; ground- (and orbital)-breaking achievements.&nbsp;&nbsp;</p>
         <div style="display:flex;gap:14px;margin-top:8px">
-          <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:14px 26px;transition:all .2s" style-hover="background:rgba(33,223,240,0.1)">REQUEST BRIEFING</a>
+          <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:14px 26px;transition:all .2s" style-hover="background:rgba(33,223,240,0.1)">BRIEFINGS ARCHIVE</a>
         </div>
       </div>
-      <div style="border:1px solid rgba(160,220,235,0.12);background:#04070C;padding:44px;display:flex;flex-direction:column;gap:28px;position:relative;overflow:hidden">
-        <div style="position:absolute;right:44px;top:-20px;width:1px;height:140%;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.35) 50%,rgba(33,223,240,0) 100%)"></div>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.28em;color:#5A6B77">LATEST BRIEF · Q3 2026</span>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:24px;letter-spacing:.06em;line-height:1.4;color:#EAF2F6">The re-pricing of heavy-lift: what falling $/kg means for constellation economics.</div>
-        <div style="display:flex;align-items:center;gap:16px">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#8FA3B0">12 MIN READ</span>
-          <span style="width:4px;height:4px;background:#21DFF0"></span>
-          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em">READ →</a>
+      <div data-reveal="" style="perspective:1400px">
+        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="border:1px solid rgba(160,220,235,0.12);background:linear-gradient(160deg,#070D14 0%,#04070C 100%);padding:44px;display:flex;flex-direction:column;gap:28px;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1);box-shadow:0 24px 70px rgba(0,0,0,0.5)">
+          <div style="position:absolute;right:44px;top:-20px;width:1px;height:140%;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.35) 50%,rgba(33,223,240,0) 100%)"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.28em;color:#5A6B77;transform:translateZ(14px)">LATEST BRIEF · Q2 2026</span>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:24px;letter-spacing:.06em;line-height:1.4;color:#EAF2F6;transform:translateZ(22px)">The (un)shared understanding on space threats: EU invests to increase common awareness of risks and counterspace capabilities.</div>
+          <div style="display:flex;align-items:center;gap:16px;transform:translateZ(14px)">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#8FA3B0">12 MIN READ</span>
+            <span style="width:4px;height:4px;background:#21DFF0"></span>
+            <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em">READ →</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ LEADERSHIP ============ -->
-  <section id="leadership" data-screen-label="Leadership" style="position:relative;z-index:2;padding:120px 48px;border-top:1px solid rgba(160,220,235,0.1);background:linear-gradient(180deg,#070D14 0%,#04070C 100%)">
+  <section id="leadership" data-screen-label="Leadership" style="position:relative;z-index:2;padding:110px 48px;background:linear-gradient(180deg,#070D14 0%,#04070C 100%);border-top:1px solid rgba(160,220,235,0.1)">
     <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
-
-      <div data-reveal="lead-head" style="{{ rvLeadHead }}">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
-          <div style="display:flex;flex-direction:column;gap:16px">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">03 / LEADERSHIP</span>
-            <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6">FLIGHT CREW</h2>
-          </div>
-          <p style="margin:0;max-width:400px;font-size:14.5px;line-height:1.7;color:#8FA3B0">Founding partners lead every engagement directly — backed by a second line of partners, advisors and legal counsel.</p>
+      <div data-reveal="" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">03 / LEADERSHIP</span>
+          <a href="leadership.html" style="text-decoration:none"><h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6" style-hover="color:#21DFF0">FOUNDERS &amp; PARTNERS</h2></a>
+        </div>
+        <p style="margin:0;max-width:420px;font-size:14.5px;line-height:1.7;color:#8FA3B0">Every engagement is led directly by partners who have built and scaled launch programs on both sides of the Atlantic — backed by a second line of capital, regulatory, and legal depth.</p>
+      </div>
+      <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;perspective:1400px">
+        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-01</span>
+          <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">STRΛTEGY &amp; CΛPITΛL</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)"><span style="color: #8FA3B0; font-family: -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif; white-space: pre-wrap">Founders are skilled executives with decisive influence toward operational objectives and strategy definitions. Expertise in investment and M&amp;A activities, negotiation and closing of billions in contracts and investments, in addition to personal investments in high-tech across Europe, USA and Australia.  </span></p>
+          <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
+        </div>
+        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-02</span>
+          <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">DEEP TECHNICAL KNOWLEDGE</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">From bootstrapping smallsat startups, through transforming high-tech aerospace &amp; defense mid-caps, to&nbsp; directing launch transportation and mannned spaceflight programs, founders grant decades of high-value technical and managerial expertise across U.S. and Europe.&nbsp;&nbsp;</p>
+          <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
+        </div>
+        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-03</span>
+          <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">PARTNERS</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">A second line of partners, advisors and legal counsels expertise is accessible per engagement — capital markets, defense procurement, regulatory &amp; tax, and cross-border corporate structuring.</p>
+          <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
         </div>
       </div>
-
-      <!-- founding partners -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:32px">
-        <sc-for list="{{ founders }}" as="p" hint-placeholder-count="2">
-          <article data-reveal="{{ p.revealKey }}" style="{{ p.rv }}">
-            <div style="background:#070D14;border:1px solid rgba(160,220,235,0.12);display:flex;flex-direction:column;position:relative;overflow:hidden;height:100%;box-sizing:border-box;transition:border-color .25s" style-hover="border-color:rgba(33,223,240,0.4)">
-              <div style="position:relative;height:340px">
-                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="rect" src="{{ p.src }}" placeholder="{{ p.placeholder }}" hint-size="100%,340px"></x-import>
-                <div style="position:absolute;left:0;bottom:0;right:0;height:110px;background:linear-gradient(180deg,rgba(7,13,20,0) 0%,rgba(7,13,20,0.9) 100%);pointer-events:none"></div>
-              </div>
-              <div style="padding:34px 38px 38px;display:flex;flex-direction:column;gap:15px">
-                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
-                  <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.1em;color:#EAF2F6">{{ p.name }}</h3>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.24em;color:#21DFF0">{{ p.role }}</span>
-                </div>
-                <span style="width:28px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0))"></span>
-                <p style="margin:0;font-size:14.5px;line-height:1.75;color:#8FA3B0">{{ p.bio }}</p>
-                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5A6B77">{{ p.focus }}</span>
-              </div>
-            </div>
-          </article>
-        </sc-for>
-      </div>
-
-      <!-- partners, advisors & legal counsel -->
-      <div data-reveal="lead-sub" style="{{ rvLeadSub }}">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.28em;color:#8FA3B0">PARTNERS · ADVISORS · LEGAL COUNSEL</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(160,220,235,0.1);border:1px solid rgba(160,220,235,0.1);margin-top:-32px">
-        <sc-for list="{{ partners }}" as="p" hint-placeholder-count="5">
-          <article data-reveal="{{ p.revealKey }}" style="{{ p.rv }}">
-            <div style="background:#070D14;padding:34px 30px;display:flex;flex-direction:column;gap:17px;height:100%;box-sizing:border-box;transition:background .25s" style-hover="background:#0A1420">
-              <div style="display:flex;align-items:center;gap:16px">
-                <div style="width:64px;height:64px;flex:none">
-                  <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="circle" placeholder="Photo" hint-size="64px,64px"></x-import>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
-                  <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:16.5px;letter-spacing:.08em;color:#EAF2F6">{{ p.name }}</h3>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:#21DFF0">{{ p.role }}</span>
-                </div>
-              </div>
-              <p style="margin:0;font-size:13px;line-height:1.65;color:#8FA3B0">{{ p.bio }}</p>
-            </div>
-          </article>
-        </sc-for>
+      <div data-reveal="" style="display:flex;justify-content:center">
+        <a href="leadership.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:14px 30px;transition:all .2s" style-hover="background:rgba(33,223,240,0.1)">MEET THE TEAM →</a>
       </div>
     </div>
   </section>
 
   <!-- ============ MISSION CONTROL / CTA ============ -->
   <section id="mission-control" data-screen-label="Mission Control" style="position:relative;z-index:2;padding:130px 48px;border-top:1px solid rgba(160,220,235,0.1);background:#04070C;overflow:hidden">
-    <div style="position:absolute;left:50%;top:0;width:2px;height:100%;background:linear-gradient(180deg,rgba(33,223,240,0.5) 0%,rgba(33,223,240,0) 80%);pointer-events:none"></div>
-    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">04 / MISSION CONTROL</span>
-      <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(36px,5vw,54px);letter-spacing:.12em;color:#EAF2F6;line-height:1.15">REΛDY FOR<br>IGNITION?</h2>
-      <p style="margin:0;max-width:460px;font-size:15.5px;line-height:1.7;color:#8FA3B0">A first conversation is confidential, free, and usually 30 minutes. Tell us where you are in the flight plan.</p>
-      <a href="/cdn-cgi/l/email-protection#f794989983969483b7819285839e94969bda9693819e8498858ed98487969492" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;color:#04070C;background:#21DFF0;padding:18px 40px;font-weight:500;transition:all .2s;box-shadow:0 0 40px rgba(33,223,240,0.25)" style-hover="background:#7FEDF7">INITIATE CONTACT</a>
+    <div data-para="0.14" style="position:absolute;left:50%;top:0;width:2px;height:120%;background:linear-gradient(180deg,rgba(33,223,240,0.5) 0%,rgba(33,223,240,0) 80%);pointer-events:none"></div>
+    <div data-reveal="" style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">04 / CONNECT</span>
+      <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(36px,5vw,54px);letter-spacing:.12em;color:#EAF2F6;line-height:1.15">CONNECT WITH US</h2>
+      <p style="margin: 0; max-width: 460px; font-size: 15.5px; line-height: 1.7; color: #8FA3B0; width: 517px; height: 53px">A first conversation is confidential, free, and usually takes 30 minutes. Tell us where you are in the ascent plan.</p>
+      <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;color:#04070C;background:#21DFF0;padding:18px 40px;font-weight:500;transition:all .3s cubic-bezier(.2,.7,.25,1);box-shadow:0 18px 50px rgba(0,0,0,0.5),0 0 40px rgba(33,223,240,0.25)" style-hover="background:#7FEDF7;transform:translateY(-3px);box-shadow:0 26px 60px rgba(0,0,0,0.55),0 0 56px rgba(33,223,240,0.35)">INITIATE CONTACT</a>
     </div>
   </section>
 
+  <!-- ============ SECTOR DETAIL MODALS ============ -->
+  <sc-if value="{{ modalsReady }}" hint-placeholder-val="{{ false }}">
+    <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="0">
+      <div style="position:fixed;inset:0;z-index:90;pointer-events:{{ s.mEvents }}">
+        <div onClick="{{ closeSector }}" style="position:absolute;inset:0;background:rgba(2,5,9,0.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:opacity .5s cubic-bezier(.2,.7,.25,1);opacity:{{ s.mOpacity }}"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;perspective:1600px;pointer-events:none">
+          <div onClick="{{ closeSector }}" style="pointer-events:{{ s.mEvents }};cursor:pointer;position:relative;width:min(940px,94vw);max-height:86vh;overflow:auto;background:linear-gradient(160deg,#0A1420 0%,#04070C 100%);border:1px solid rgba(33,223,240,0.22);box-shadow:0 60px 140px rgba(0,0,0,0.7),0 0 80px rgba(33,223,240,0.08);transition:transform .6s cubic-bezier(.2,.7,.25,1),opacity .45s cubic-bezier(.2,.7,.25,1);transform:{{ s.mTransform }};opacity:{{ s.mOpacity }}">
+            <div style="position:absolute;left:50%;top:-30px;width:2px;height:130px;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.4) 50%,rgba(33,223,240,0) 100%);pointer-events:none"></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+              <div style="position:relative;min-height:340px;border-right:1px solid rgba(160,220,235,0.1);overflow:hidden">
+                {{ s.imgEl }}
+                <div style="position:absolute;inset:auto 0 0 0;height:70px;background:linear-gradient(180deg,rgba(4,7,12,0) 0%,rgba(4,7,12,0.8) 100%);pointer-events:none"></div>
+                <span style="position:absolute;left:14px;bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.18em;color:rgba(234,242,246,0.55)">IMAGE · {{ s.imgCredit }}</span>
+              </div>
+              <div style="padding:48px 44px 40px;display:flex;flex-direction:column;gap:22px">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.28em;color:#21DFF0">{{ s.code }} / DETAIL</span>
+                <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.1em;color:#EAF2F6;line-height:1.3">{{ s.name }}</h3>
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <sc-for list="{{ s.detail }}" as="para" hint-placeholder-count="3">
+                    <p style="margin:0;font-size:14px;line-height:1.75;color:#8FA3B0">{{ para }}</p>
+                  </sc-for>
+                </div>
+                <div style="margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(160,220,235,0.1)">
+                  <span style="width:20px;height:1px;background:#21DFF0"></span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.26em;color:#5A6B77">CLICK ANYWHERE TO RETURN</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </sc-if>
+
   <!-- ============ FOOTER ============ -->
-  <footer data-screen-label="Footer" style="position:relative;z-index:2;border-top:1px solid rgba(160,220,235,0.1);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+  <footer data-screen-label="Footer" style="position:relative;z-index:2;border-top:1px solid rgba(160,220,235,0.1);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:#04070C">
     <div style="display:flex;align-items:center;gap:9px">
       <span style="display:block;width:3px;height:18px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
       <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
+      <button onClick="{{ logOut }}" style="margin-left:18px;background:none;border:1px solid rgba(160,220,235,0.18);color:#8FA3B0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;padding:7px 14px;cursor:pointer" style-hover="color:#21DFF0;border-color:rgba(33,223,240,0.4)">LOG OUT</button>
     </div>
     <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5A6B77">© 2026 VERTICAL ADVISORY · ALL SYSTEMS NOMINAL</span>
-    <a href="Vertical Brand System.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
+    <a href="brand-system.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
   </footer>
 </div>
 
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;animatePlume&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Hero&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;animatePlume&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Hero&quot;}, &quot;depthFx&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { now: new Date(), revealed: {} };
+  state = { now: new Date(), openIdx: null };
 
   componentDidMount() {
     this._t = setInterval(() => this.setState({ now: new Date() }), 1000);
-    // scroll-reveal for the leadership section
-    this._io = new IntersectionObserver((entries) => {
-      const hits = entries.filter(e => e.isIntersecting);
-      if (!hits.length) return;
-      this.setState(s => {
-        const revealed = { ...s.revealed };
-        hits.forEach(e => { revealed[e.target.getAttribute('data-reveal')] = true; });
-        return { revealed };
-      });
-      hits.forEach(e => this._io.unobserve(e.target));
-    }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
-    this._observeReveals();
+
+    this._onKey = (e) => { if (e.key === 'Escape') this._close(); };
+    window.addEventListener('keydown', this._onKey);
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarse = matchMedia('(pointer: coarse)').matches;
+    this._fx = (this.props.depthFx ?? true) && !reduced && !coarse;
+
+    // scroll parallax (rAF-throttled, GPU transforms only)
+    if (this._fx) {
+      this._paraEls = Array.from(document.querySelectorAll('[data-para]'));
+      this._raf = 0;
+      this._onScroll = () => {
+        if (this._raf) return;
+        this._raf = requestAnimationFrame(() => {
+          this._raf = 0;
+          const y = window.scrollY;
+          for (const el of this._paraEls) {
+            el.style.transform = 'translate3d(0,' + (y * parseFloat(el.dataset.para)).toFixed(1) + 'px,0)';
+          }
+        });
+      };
+      window.addEventListener('scroll', this._onScroll, { passive: true });
+      this._onScroll();
+    }
+
+    // scroll reveals (progressive enhancement: content visible if JS is off)
+    if (!reduced) {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      this._io = new IntersectionObserver((entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'none';
+            this._io.unobserve(en.target);
+          }
+        }
+      }, { threshold: 0.12 });
+      for (const el of els) {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) continue;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity .85s cubic-bezier(.2,.6,.2,1), transform .85s cubic-bezier(.2,.6,.2,1)';
+        this._io.observe(el);
+      }
+    }
   }
-  _observeReveals() {
-    const els = document.querySelectorAll('[data-reveal]');
-    if (!els.length) { setTimeout(() => this._observeReveals(), 300); return; }
-    els.forEach(el => this._io.observe(el));
-  }
+
   componentWillUnmount() {
     clearInterval(this._t);
+    window.removeEventListener('keydown', this._onKey);
+    document.body.style.overflow = '';
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
     if (this._io) this._io.disconnect();
-  }
-  _rv(key, delay) {
-    const on = this.state.revealed[key];
-    return {
-      opacity: on ? 1 : 0,
-      transform: on ? 'translateY(0)' : 'translateY(36px)',
-      transition: 'opacity .9s cubic-bezier(.22,.61,.36,1) ' + delay + 's, transform .9s cubic-bezier(.22,.61,.36,1) ' + delay + 's',
-      willChange: 'opacity, transform',
-      height: '100%'
-    };
+    if (this._raf) cancelAnimationFrame(this._raf);
   }
 
   renderVals() {
     const n = this.state.now;
     const pad = (x) => String(x).padStart(2, '0');
-    const founders = [
-      {
-        slotId: 'founder-marco', revealKey: 'founder-0',
-        placeholder: 'Drop Marco\u2019s portrait',
-        name: 'MΛRCO VILLΛ', role: 'FOUNDING PARTNER',
-        bio: 'Marco Villa has spent twenty-five years turning aerospace ambition into flown hardware and enterprise value — directing Dragon missions at SpaceX, building Tyvak into a publicly traded smallsat manufacturer through its exit to Lockheed Martin, and today leading Canopy Aerospace & Defense as CEO. He holds a doctorate in aerospace engineering and leads engagements on strategy, capital, and scale-up.',
-        focus: 'STRATEGY · CAPITAL · SCALE-UP'
-      },
-      {
-        slotId: 'founder-fabio', revealKey: 'founder-1',
-        src: 'fabio-nichele.png',
-        placeholder: 'Drop Fabio\u2019s portrait',
-        name: 'FΛBIO NICHELE', role: 'FOUNDING PARTNER',
-        bio: 'Fabio Nichele took Tyvak International from first employee to CEO — building a team of eighty, flying eighteen satellites in five years, closing over €60M in government and commercial contracts, and steering the company through a NYSE listing and its acquisition by Lockheed Martin. He holds a PhD in Space Systems Architecture developed between the Polytechnic of Turin and MIT, and leads engagements on growth, execution, and transformation.',
-        focus: 'GROWTH · EXECUTION · TRANSFORMATION'
-      }
-    ].map((p, i) => ({ ...p, rv: this._rv(p.revealKey, i * 0.15) }));
-
-    const partners = [
-      { slotId: 'partner-1', name: 'PARTNER NAME', role: 'PARTNER · CAPITAL MARKETS', bio: 'Advises founders and funds on fundraising strategy, valuation, and investor relations across the launch economy.' },
-      { slotId: 'partner-2', name: 'PARTNER NAME', role: 'PARTNER · DEFENSE & PROCUREMENT', bio: 'Former programme director; guides dual-use positioning and sovereign procurement processes end to end.' },
-      { slotId: 'partner-3', name: 'ADVISOR NAME', role: 'SENIOR ADVISOR · TECHNOLOGY', bio: 'Propulsion and systems engineering veteran; provides independent technical diligence for boards and investors.' },
-      { slotId: 'partner-4', name: 'ADVISOR NAME', role: 'SENIOR ADVISOR · REGULATORY', bio: 'Specialist in spectrum, licensing, and launch authorization across EU and US regimes.' },
-      { slotId: 'partner-5', name: 'COUNSEL NAME', role: 'LEGAL COUNSEL', bio: 'Counsel on corporate structuring, IP, and cross-border agreements for space ventures and their investors.' }
-    ].map((p, i) => ({ ...p, revealKey: 'partner-' + i, rv: this._rv('partner-' + i, i * 0.1) }));
-
+    const maxTilt = 4; // degrees — perceptual, never toy-like
     return {
       animatePlume: this.props.animatePlume ?? true,
-      founders,
-      partners,
-      rvLeadHead: this._rv('lead-head', 0),
-      rvLeadSub: this._rv('lead-sub', 0),
+      logOut: () => { sessionStorage.removeItem('vertical_auth'); location.reload(); },
       utcTime: pad(n.getUTCHours()) + ':' + pad(n.getUTCMinutes()) + ':' + pad(n.getUTCSeconds()),
-      sectors: [
-        { code: 'SEC-01', name: 'LAUNCH & PROPULSION', desc: 'Vehicle programs, engine development, and launch service economics from seed to flight-proven.' },
-        { code: 'SEC-02', name: 'SATELLITES & CONSTELLATIONS', desc: 'Constellation architecture, unit economics, and go-to-market for orbital platforms.' },
-        { code: 'SEC-03', name: 'GROUND & DATA', desc: 'Ground segment strategy, downlink capacity, and turning telemetry into revenue.' },
-        { code: 'SEC-04', name: 'CAPITAL & GOVERNMENT', desc: 'Fundraising, dual-use positioning, and navigating sovereign and defense procurement.' }
-      ]
+      tiltMove: (e) => {
+        if (!this._fx) return;
+        const el = e.currentTarget;
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'rotateX(' + (-y * maxTilt).toFixed(2) + 'deg) rotateY(' + (x * maxTilt * 1.2).toFixed(2) + 'deg) translateZ(16px)';
+        el.style.boxShadow = '0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(33,223,240,0.1)';
+        el.style.borderColor = 'rgba(33,223,240,0.28)';
+      },
+      tiltLeave: (e) => {
+        const el = e.currentTarget;
+        el.style.transform = '';
+        el.style.boxShadow = '';
+        el.style.borderColor = '';
+      },
+      modalsReady: true,
+      closeSector: () => this._close(),
+      stopClick: (e) => e.stopPropagation(),
+      sectors: Component.SECTORS.map((s, i) => ({
+        ...s,
+        imgEl: React.createElement('img', {
+          src: s.img,
+          alt: s.imgAlt,
+          loading: 'lazy',
+          style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(0.85) contrast(1.02)' }
+        }),
+        openModal: () => {
+          this.setState({ openIdx: i });
+          document.body.style.overflow = 'hidden';
+        },
+        mEvents: this.state.openIdx === i ? 'auto' : 'none',
+        mOpacity: this.state.openIdx === i ? '1' : '0',
+        mTransform: this.state.openIdx === i
+          ? 'rotateX(0.001deg) translateY(0px) translateZ(0px)'
+          : 'rotateX(13deg) translateY(48px) translateZ(-180px)'
+      }))
     };
   }
+
+  _close() {
+    if (this.state.openIdx === null) return;
+    this.setState({ openIdx: null });
+    document.body.style.overflow = '';
+  }
 }
+
+Component.SECTORS = [
+  { code: 'SEC-01', name: 'INDUSTRY', desc: 'Strategy and execution support for commercial operators of the space economy: from start-ups\' founders to large integrators\' executives & supply chain contractors.',
+    img: 'images/sectors/sec-01-industry.jpg', imgAlt: 'Spacecraft assembly high bay at JPL', imgCredit: 'NASA/JPL-CALTECH · PUBLIC DOMAIN',
+    detail: [
+      'From seed-stage founders defining their first commercial offer to prime integrators rethinking their supply chains, we work alongside operators at every altitude of the value chain.',
+      'Engagements cover market entry and positioning, capture strategy for institutional programmes, pricing and partnering models, and hands-on execution support during scale-up.',
+      'We stay involved through delivery: our role ends when the decision is implemented, not when the recommendation is presented.'
+    ] },
+  { code: 'SEC-02', name: 'GOVERNMENT AGENCIES', desc: 'Advisory for international government agencies\' leaders and policy makers on programs design, partnerships, and procurement.',
+    img: 'images/sectors/sec-02-government.jpg', imgAlt: 'ESA Director General addresses CM25', imgCredit: 'ESA – PH. SERVENT',
+    detail: [
+      'We advise agency leadership and policy makers on the design of programmes that must survive political cycles, budget reviews, and shifting industrial landscapes.',
+      'Typical mandates include programme architecture, public-private partnership models, procurement strategy, and international cooperation frameworks.',
+      'Our positioning is strictly independent: no industrial affiliation, no conflict of interest across the ecosystems we serve.'
+    ] },
+  { code: 'SEC-03', name: 'INVESTORS', desc: 'Diligence, market mapping, and portfolio strategy for funds, institutional investors, venture capital firms, business angels interested in capitalizing on emerging defense & space economy.',
+    img: 'images/sectors/sec-03-investors.jpg', imgAlt: 'Global market data visualization over a digital globe', imgCredit: 'CREDIT: SURUENA',
+    detail: [
+      'Due diligence, market mapping, and portfolio strategy for funds, institutional investors, venture firms, and business angels entering the defense & space economy.',
+      'We translate engineering claims into investable theses: technology readiness, regulatory exposure, demand signals, and realistic exit horizons.',
+      'Support continues post-investment — from board-level guidance to follow-on positioning of portfolio companies.'
+    ] },
+  { code: 'SEC-04', name: 'SECURITY & DEFENSE', desc: 'Dual-use positioning and guidance through sovereign capability  requirements and national security procurement processes.',
+    img: 'images/sectors/sec-04-defense.jpg', imgAlt: 'Satellite data-relay network coordinating space-based defense assets', imgCredit: 'NORTHROP GRUMMAN',
+    detail: [
+      'Dual-use positioning for companies navigating sovereign capability requirements and national security procurement processes.',
+      'We help clients read the doctrine behind the demand: counterspace awareness, resilience mandates, and the emerging architecture of European defence space programmes.',
+      'All engagements are conducted under confidentiality protocols appropriate to the domain.'
+    ] },
+  { code: 'SEC-05', name: 'CROSS-SECTOR STAKEHOLDERS', desc: 'Coordinated advisory for cross-sector stakeholders: insurers, legal and regulatory bodies, research & innovation centers spanning multiple interests.',
+    img: 'images/sectors/sec-05-multidomain.jpg', imgAlt: 'Digital globe representing cross-sector, multi-domain connectivity', imgCredit: '© VIT-MAR/SHUTTERSTOCK',
+    detail: [
+      'Coordinated advisory for stakeholders whose interests span several sectors at once: insurers, legal and regulatory bodies, research and innovation centres.',
+      'We act as the connective layer — aligning technical, regulatory, and commercial perspectives into one coherent course of action.',
+      'The outcome is a shared operating picture that lets every party commit with confidence.'
+    ] }
+];
+
 </script>
 </body>
 </html>
