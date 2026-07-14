@@ -19,6 +19,13 @@ a:hover{color:#7FEDF7}
 input::placeholder,textarea::placeholder{color:#5A6B77}
 input,textarea,select{font-family:'IBM Plex Sans',sans-serif}
 select option{background:#070D14;color:#EAF2F6}
+@media (max-width:720px){
+[data-mob="hide"]{display:none!important}
+header[data-screen-label="Contact Hero"]{padding:120px 22px 56px!important}
+section[data-screen-label="Contact Form"]{padding:56px 22px 90px!important}
+input,select,textarea{font-size:16px!important}
+footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:center!important;text-align:center!important}
+}
 </style>
 </helmet>
 
@@ -36,10 +43,10 @@ select option{background:#070D14;color:#EAF2F6}
       <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
     </a>
     <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:clamp(14px,2.5vw,40px)">
-      <a href="index.html#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
-      <a href="index.html#intelligence" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
-      <a href="leadership.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
-      <a href="index.html#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
+      <a href="index.html#sectors" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
+      <a href="index.html#intelligence" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
+      <a href="leadership.html" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
+      <a href="index.html#mission-control" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
       <a href="#" aria-current="page" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none">CONTACT</a>
     </div>
   </nav>

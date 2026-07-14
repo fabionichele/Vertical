@@ -19,11 +19,11 @@
             </div>
             <label style="display:flex;flex-direction:column;gap:6px">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.26em;color:#8FA3B0">USERNAME</span>
-              <input name="u" type="text" autocomplete="username" autocapitalize="none" style="background:#070D14;border:1px solid rgba(160,220,235,0.18);color:#EAF2F6;font-family:'IBM Plex Mono',monospace;font-size:14px;padding:12px 14px;outline:none;border-radius:0">
+              <input name="u" type="text" autocomplete="username" autocapitalize="none" style="background:#070D14;border:1px solid rgba(160,220,235,0.18);color:#EAF2F6;font-family:'IBM Plex Mono',monospace;font-size:16px;padding:12px 14px;outline:none;border-radius:0">
             </label>
             <label style="display:flex;flex-direction:column;gap:6px">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.26em;color:#8FA3B0">PASSWORD</span>
-              <input name="p" type="password" autocomplete="current-password" style="background:#070D14;border:1px solid rgba(160,220,235,0.18);color:#EAF2F6;font-family:'IBM Plex Mono',monospace;font-size:14px;padding:12px 14px;outline:none;border-radius:0">
+              <input name="p" type="password" autocomplete="current-password" style="background:#070D14;border:1px solid rgba(160,220,235,0.18);color:#EAF2F6;font-family:'IBM Plex Mono',monospace;font-size:16px;padding:12px 14px;outline:none;border-radius:0">
             </label>
             <div data-err style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:#FF5C5C;min-height:14px"></div>
             <button type="submit" style="background:#21DFF0;color:#04070C;border:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;font-weight:500;padding:14px;cursor:pointer">ENTER</button>

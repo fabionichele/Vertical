@@ -19,6 +19,23 @@ a:hover{color:#7FEDF7}
 @keyframes plumeFlicker{0%,100%{opacity:1}45%{opacity:.82}60%{opacity:.95}75%{opacity:.86}}
 @keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(40px)}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:720px){
+[data-mob="hide"]{display:none!important}
+section[data-screen-label="Hero"]{padding:120px 22px 110px!important;min-height:86vh!important}
+section[data-screen-label="Hero"] h1{font-size:clamp(38px,11.5vw,56px)!important}
+[data-mob="hero-ghost"]{font-size:clamp(38px,11.5vw,56px)!important}
+[data-mob="badge"]{font-size:10px!important;letter-spacing:.22em!important;padding:10px 14px!important}
+[data-mob="ticker"]{left:22px!important;bottom:18px!important}
+#sectors,#intelligence,#leadership{padding:72px 22px!important}
+#mission-control{padding:90px 22px!important}
+#sectors h2,#intelligence h2,#leadership h2{font-size:28px!important;letter-spacing:.1em!important}
+[data-mob="grid2"]{grid-template-columns:1fr!important;gap:48px!important}
+[data-mob="card"]{padding:28px 22px!important;min-height:0!important}
+[data-mob="card"] p{font-size:14.5px!important}
+[data-mob="modal-img"]{min-height:220px!important}
+[data-mob="modal-body"]{padding:28px 22px 26px!important}
+footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:center!important;text-align:center!important}
+}
 </style>
 </helmet>
 
@@ -38,10 +55,10 @@ a:hover{color:#7FEDF7}
       <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
     </a>
     <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:clamp(14px,2.5vw,40px)">
-      <a href="#sectors" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
-      <a href="#intelligence" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
-      <a href="#leadership" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
-      <a href="#mission-control" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
+      <a href="#sectors" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
+      <a href="#intelligence" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
+      <a href="#leadership" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
+      <a href="#mission-control" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
       <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none;transition:all .2s" style-hover="background:rgba(33,223,240,0.1);color:#7FEDF7">CONTACT</a>
     </div>
   </nav>
@@ -64,7 +81,7 @@ a:hover{color:#7FEDF7}
     </sc-if>
 
     <!-- telemetry rail -->
-    <div style="position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none">
+    <div data-mob="hide" style="position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none">
       <div style="width:1px;height:120px;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.6) 100%)"></div>
       <div style="width:9px;height:1px;background:#21DFF0"></div>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;color:#8FA3B0;writing-mode:vertical-rl">GROUND</span>
@@ -72,10 +89,10 @@ a:hover{color:#7FEDF7}
 
     <!-- foreground content (slight counter-parallax = closest layer) -->
     <div data-para="-0.06" style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:36px">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;color:#21DFF0;border:1px solid rgba(33,223,240,0.35);padding:11px 26px;background:rgba(4,7,12,0.5)">DEVELOPMENT&nbsp;<span style="letter-spacing: 3.52px;">· GROWTH&nbsp;</span><span style="letter-spacing: 3.52px;">· UPSCALING</span></div>
+      <div data-mob="badge" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;color:#21DFF0;border:1px solid rgba(33,223,240,0.35);padding:11px 26px;background:rgba(4,7,12,0.5)">DEVELOPMENT&nbsp;<span style="letter-spacing: 3.52px;">· GROWTH&nbsp;</span><span style="letter-spacing: 3.52px;">· UPSCALING</span></div>
       <div style="display:flex;flex-direction:column;gap:4px">
         <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:#EAF2F6;text-shadow:0 0 60px rgba(33,223,240,0.18)">VERTICΛL</h1>
-        <div data-para="0.05" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:rgba(234,242,246,0.13)">ΛDVISORY</div>
+        <div data-para="0.05" data-mob="hero-ghost" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(56px,9vw,118px);letter-spacing:.14em;line-height:1.02;color:rgba(234,242,246,0.13)">ΛDVISORY</div>
       </div>
       <p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.7; color: #8FA3B0; text-transform: uppercase">Strategic consulting for the space economy</p>
       <div style="display:flex;gap:18px">
@@ -84,7 +101,7 @@ a:hover{color:#7FEDF7}
     </div>
 
     <!-- utc ticker -->
-    <div style="position:absolute;left:48px;bottom:36px;display:flex;align-items:center;gap:14px">
+    <div data-mob="ticker" style="position:absolute;left:48px;bottom:36px;display:flex;align-items:center;gap:14px">
       <span style="width:6px;height:6px;border-radius:50%;background:#21DFF0;box-shadow:0 0 8px rgba(33,223,240,0.8)"></span>
       <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#8FA3B0">UTC {{ utcTime }} · ALL SYSTEMS NOMINAL</span>
     </div>
@@ -102,7 +119,7 @@ a:hover{color:#7FEDF7}
       </div>
       <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;perspective:1400px">
         <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="5">
-          <div onClick="{{ s.openModal }}" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:220px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+          <div data-mob="card" onClick="{{ s.openModal }}" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:220px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">{{ s.code }}</span>
             <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">{{ s.name }}</h3>
             <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">{{ s.desc }}</p>
@@ -115,7 +132,7 @@ a:hover{color:#7FEDF7}
 
   <!-- ============ INTELLIGENCE ============ -->
   <section id="intelligence" data-screen-label="Intelligence" style="position:relative;z-index:2;padding:110px 48px;background:#070D14;border-top:1px solid rgba(160,220,235,0.1)">
-    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div data-mob="grid2" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
       <div data-reveal="" style="display:flex;flex-direction:column;gap:24px">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">02 / INTELLIGENCE</span>
         <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#EAF2F6;line-height:1.2">BRIEFINGS</h2>
@@ -150,19 +167,19 @@ a:hover{color:#7FEDF7}
         <p style="margin:0;max-width:420px;font-size:14.5px;line-height:1.7;color:#8FA3B0">Every engagement is led directly by partners who have built and scaled launch programs on both sides of the Atlantic — backed by a second line of capital, regulatory, and legal depth.</p>
       </div>
       <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;perspective:1400px">
-        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+        <div data-mob="card" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-01</span>
           <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">STRΛTEGY &amp; CΛPITΛL</h3>
           <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)"><span style="color: #8FA3B0; font-family: -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif; white-space: pre-wrap">Founders are skilled executives with decisive influence toward operational objectives and strategy definitions. Expertise in investment and M&amp;A activities, negotiation and closing of billions in contracts and investments, in addition to personal investments in high-tech across Europe, USA and Australia.  </span></p>
           <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
         </div>
-        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+        <div data-mob="card" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-02</span>
           <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">DEEP TECHNICAL KNOWLEDGE</h3>
           <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">From bootstrapping smallsat startups, through transforming high-tech aerospace &amp; defense mid-caps, to&nbsp; directing launch transportation and mannned spaceflight programs, founders grant decades of high-value technical and managerial expertise across U.S. and Europe.&nbsp;&nbsp;</p>
           <span style="width:24px;height:2px;background:linear-gradient(90deg,#21DFF0,rgba(33,223,240,0));transform:translateZ(16px)"></span>
         </div>
-        <div onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
+        <div data-mob="card" onPointerMove="{{ tiltMove }}" onPointerLeave="{{ tiltLeave }}" style="background:linear-gradient(165deg,#0A1420 0%,#070D14 60%);border:1px solid rgba(160,220,235,0.12);padding:40px 32px;display:flex;flex-direction:column;gap:20px;min-height:200px;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.25,1),box-shadow .5s cubic-bezier(.2,.7,.25,1),border-color .3s;box-shadow:0 10px 30px rgba(0,0,0,0.35)">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0;transform:translateZ(26px)">EXP-03</span>
           <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.1em;color:#EAF2F6;line-height:1.35;transform:translateZ(20px)">PARTNERS</h3>
           <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8FA3B0;flex:1;transform:translateZ(10px)">A second line of partners, advisors and legal counsels expertise is accessible per engagement — capital markets, defense procurement, regulatory &amp; tax, and cross-border corporate structuring.</p>
@@ -181,7 +198,7 @@ a:hover{color:#7FEDF7}
     <div data-reveal="" style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;position:relative">
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">04 / CONNECT</span>
       <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(36px,5vw,54px);letter-spacing:.12em;color:#EAF2F6;line-height:1.15">CONNECT WITH US</h2>
-      <p style="margin: 0; max-width: 460px; font-size: 15.5px; line-height: 1.7; color: #8FA3B0; width: 517px; height: 53px">A first conversation is confidential, free, and usually takes 30 minutes. Tell us where you are in the ascent plan.</p>
+      <p style="margin: 0; max-width: 460px; font-size: 15.5px; line-height: 1.7; color: #8FA3B0">A first conversation is confidential, free, and usually takes 30 minutes. Tell us where you are in the ascent plan.</p>
       <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;color:#04070C;background:#21DFF0;padding:18px 40px;font-weight:500;transition:all .3s cubic-bezier(.2,.7,.25,1);box-shadow:0 18px 50px rgba(0,0,0,0.5),0 0 40px rgba(33,223,240,0.25)" style-hover="background:#7FEDF7;transform:translateY(-3px);box-shadow:0 26px 60px rgba(0,0,0,0.55),0 0 56px rgba(33,223,240,0.35)">INITIATE CONTACT</a>
     </div>
   </section>
@@ -195,12 +212,12 @@ a:hover{color:#7FEDF7}
           <div onClick="{{ closeSector }}" style="pointer-events:{{ s.mEvents }};cursor:pointer;position:relative;width:min(940px,94vw);max-height:86vh;overflow:auto;background:linear-gradient(160deg,#0A1420 0%,#04070C 100%);border:1px solid rgba(33,223,240,0.22);box-shadow:0 60px 140px rgba(0,0,0,0.7),0 0 80px rgba(33,223,240,0.08);transition:transform .6s cubic-bezier(.2,.7,.25,1),opacity .45s cubic-bezier(.2,.7,.25,1);transform:{{ s.mTransform }};opacity:{{ s.mOpacity }}">
             <div style="position:absolute;left:50%;top:-30px;width:2px;height:130px;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.4) 50%,rgba(33,223,240,0) 100%);pointer-events:none"></div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-              <div style="position:relative;min-height:340px;border-right:1px solid rgba(160,220,235,0.1);overflow:hidden">
+              <div data-mob="modal-img" style="position:relative;min-height:340px;border-right:1px solid rgba(160,220,235,0.1);overflow:hidden">
                 {{ s.imgEl }}
                 <div style="position:absolute;inset:auto 0 0 0;height:70px;background:linear-gradient(180deg,rgba(4,7,12,0) 0%,rgba(4,7,12,0.8) 100%);pointer-events:none"></div>
                 <span style="position:absolute;left:14px;bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.18em;color:rgba(234,242,246,0.55)">IMAGE · {{ s.imgCredit }}</span>
               </div>
-              <div style="padding:48px 44px 40px;display:flex;flex-direction:column;gap:22px">
+              <div data-mob="modal-body" style="padding:48px 44px 40px;display:flex;flex-direction:column;gap:22px">
                 <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.28em;color:#21DFF0">{{ s.code }} / DETAIL</span>
                 <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.1em;color:#EAF2F6;line-height:1.3">{{ s.name }}</h3>
                 <div style="display:flex;flex-direction:column;gap:14px">

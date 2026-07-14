@@ -16,10 +16,17 @@ body{margin:0;background:#04070C;font-family:'IBM Plex Sans',sans-serif;color:#E
 a{color:#21DFF0;text-decoration:none}
 a:hover{color:#7FEDF7}
 ::selection{background:rgba(33,223,240,.25)}
+@media (max-width:720px){
+[data-mob="root"]{padding:48px 20px 80px!important}
+[data-mob="root"] h1{font-size:38px!important}
+[data-mob="grid"]{grid-template-columns:1fr!important}
+[data-mob="colors"]{grid-template-columns:repeat(2,1fr)!important}
+[data-mob="card378"]{width:100%!important;max-width:378px!important;height:auto!important;aspect-ratio:378/216}
+}
 </style>
 </helmet>
 
-<div style="max-width:1180px;margin:0 auto;padding:72px 56px 120px;display:flex;flex-direction:column;gap:0">
+<div data-mob="root" style="max-width:1180px;margin:0 auto;padding:72px 56px 120px;display:flex;flex-direction:column;gap:0">
 
   <!-- ============ HEADER ============ -->
   <header style="display:flex;flex-direction:column;gap:28px;padding-bottom:56px;border-bottom:1px solid rgba(160,220,235,0.12)">
@@ -41,7 +48,7 @@ a:hover{color:#7FEDF7}
       <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:22px;letter-spacing:.22em;color:#EAF2F6">LOGO</h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:20px">
+    <div data-mob="grid" style="display:grid;grid-template-columns:1.6fr 1fr;gap:20px">
       <!-- primary lockup -->
       <div style="background:#070D14;border:1px solid rgba(160,220,235,0.12);border-radius:6px;padding:64px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:40px;min-height:220px">
         <div style="display:flex;align-items:center;gap:11px">
@@ -60,7 +67,7 @@ a:hover{color:#7FEDF7}
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+    <div data-mob="grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
       <!-- on light -->
       <div style="background:#EDF1F3;border-radius:6px;padding:44px 32px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:32px">
         <div style="display:flex;align-items:center;gap:8px">
@@ -96,7 +103,7 @@ a:hover{color:#7FEDF7}
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">02</span>
       <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:22px;letter-spacing:.22em;color:#EAF2F6">COLOR</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
+    <div data-mob="colors" style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
       <div style="display:flex;flex-direction:column;gap:10px">
         <div style="height:130px;border-radius:5px;background:#04070C;border:1px solid rgba(160,220,235,0.15)"></div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#EAF2F6">VOID<br><span style="color:#5A6B77">#04070C</span></div>
@@ -131,7 +138,7 @@ a:hover{color:#7FEDF7}
       <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">03</span>
       <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:22px;letter-spacing:.22em;color:#EAF2F6">TYPOGRAPHY</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div data-mob="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <div style="background:#070D14;border:1px solid rgba(160,220,235,0.12);border-radius:6px;padding:40px;display:flex;flex-direction:column;gap:24px">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;color:#21DFF0">DISPLAY · SPACE GROTESK</div>
         <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:44px;letter-spacing:.14em;color:#EAF2F6;line-height:1.15">ΛSCENT IS<br>Λ STRΛTEGY</div>
@@ -165,7 +172,7 @@ a:hover{color:#7FEDF7}
     <!-- business cards -->
     <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="width:378px;height:216px;background:linear-gradient(160deg,#070D14 0%,#04070C 100%);border:1px solid rgba(160,220,235,0.14);border-radius:5px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+        <div data-mob="card378" style="width:378px;height:216px;background:linear-gradient(160deg,#070D14 0%,#04070C 100%);border:1px solid rgba(160,220,235,0.14);border-radius:5px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
           <div style="position:absolute;left:50%;top:-20px;width:2px;height:120px;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,rgba(33,223,240,0.35) 50%,rgba(33,223,240,0) 100%)"></div>
           <div style="display:flex;align-items:center;gap:8px">
             <div style="width:3px;height:24px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></div>
@@ -182,7 +189,7 @@ a:hover{color:#7FEDF7}
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;color:#5A6B77">BUSINESS CARD · FRONT</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="width:378px;height:216px;background:#04070C;border:1px solid rgba(160,220,235,0.14);border-radius:5px;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden">
+        <div data-mob="card378" style="width:378px;height:216px;background:#04070C;border:1px solid rgba(160,220,235,0.14);border-radius:5px;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden">
           <div style="position:absolute;left:50%;top:0;width:3px;height:100%;background:linear-gradient(180deg,rgba(33,223,240,0) 0%,#EAFBFD 40%,#21DFF0 60%,rgba(33,223,240,0) 100%);filter:blur(0.4px)"></div>
           <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120px;height:120px;background:radial-gradient(circle,rgba(33,223,240,0.14) 0%,rgba(33,223,240,0) 70%)"></div>
         </div>
