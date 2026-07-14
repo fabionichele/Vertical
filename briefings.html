@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#04070C;font-family:'IBM Plex Sans',sans-serif;color:#EAF2F6}
+a{color:#21DFF0;text-decoration:none}
+a:hover{color:#7FEDF7}
+::selection{background:rgba(33,223,240,.25)}
+@keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(40px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:720px){
+[data-mob="hide"]{display:none!important}
+nav[data-screen-label="Nav"]{padding:16px 22px!important}
+header[data-screen-label="Briefings Hero"]{padding:120px 22px 40px!important}
+header[data-screen-label="Briefings Hero"] h1{font-size:clamp(40px,12vw,56px)!important}
+section[data-screen-label="Featured"]{padding:20px 22px 40px!important}
+section[data-screen-label="Archive"]{padding:40px 22px 80px!important}
+[data-mob="feat"]{grid-template-columns:1fr!important}
+[data-mob="feat-body"]{padding:32px 24px!important}
+[data-mob="feat-title"]{font-size:26px!important}
+[data-mob="row"]{grid-template-columns:1fr!important;gap:10px!important;padding:26px 22px!important}
+[data-mob="row-meta"]{flex-direction:row!important;align-items:center!important;gap:14px!important}
+footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:center!important;text-align:center!important}
+}
+</style>
+</helmet>
+
+<x-import component-from-global-scope="auth-gate" from="./auth-gate.js" hint-size="0,0"></x-import>
+
+<div style="min-height:100vh;background:#04070C;position:relative;overflow:hidden">
+
+  <div style="position:fixed;inset:-60px 0;pointer-events:none;z-index:0;background-image:radial-gradient(1px 1px at 12% 22%,rgba(234,242,246,.35) 50%,transparent 51%),radial-gradient(1px 1px at 78% 14%,rgba(234,242,246,.28) 50%,transparent 51%),radial-gradient(1px 1px at 64% 42%,rgba(234,242,246,.3) 50%,transparent 51%),radial-gradient(1.4px 1.4px at 45% 12%,rgba(33,223,240,.4) 50%,transparent 51%),radial-gradient(1px 1px at 22% 86%,rgba(234,242,246,.22) 50%,transparent 51%);animation:starDrift 60s linear infinite alternate"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav data-screen-label="Nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:14px;padding:16px clamp(20px,4vw,48px);background:rgba(4,7,12,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(160,220,235,0.1)">
+    <a href="index.html" style="display:flex;align-items:center;gap:9px;white-space:nowrap;flex:none">
+      <span style="display:block;width:3px;height:22px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
+    </a>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:clamp(14px,2.5vw,40px)">
+      <a href="index.html#sectors" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
+      <a href="#" aria-current="page" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#EAF2F6;border-bottom:1px solid #21DFF0;padding-bottom:3px;white-space:nowrap">INTELLIGENCE</a>
+      <a href="leadership.html" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
+      <a href="index.html#mission-control" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
+      <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none;transition:all .2s" style-hover="background:rgba(33,223,240,0.1);color:#7FEDF7">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header data-screen-label="Briefings Hero" style="position:relative;z-index:2;padding:170px 48px 46px;max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.32em;color:#21DFF0">02 / INTELLIGENCE</span>
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(52px,7vw,88px);letter-spacing:.13em;line-height:1.02;color:#EAF2F6">BRIEFINGS</h1>
+      <p style="margin:0;max-width:560px;font-size:16px;line-height:1.75;color:#8FA3B0">A working archive of periodic intelligence — capital flows, regulatory shifts, and ground- and orbital-breaking achievements across the space economy. Fact-based, source-anchored, and written for decision makers.</p>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.24em;color:#5A6B77">
+        <span>{{ count }} BRIEFINGS ON RECORD</span>
+        <span style="width:4px;height:4px;background:#21DFF0"></span>
+        <span>UPDATED QUARTERLY</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ FEATURED (most recent) ============ -->
+  <section data-screen-label="Featured" style="position:relative;z-index:2;padding:8px 48px 60px;max-width:1180px;margin:0 auto">
+    <a href="{{ featured.url }}" data-mob="feat" style="display:grid;grid-template-columns:1.05fr 1fr;background:linear-gradient(160deg,#0A1420 0%,#04070C 100%);border:1px solid rgba(33,223,240,0.22);overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,0.55),0 0 60px rgba(33,223,240,0.06);transition:border-color .3s,box-shadow .3s" style-hover="border-color:rgba(33,223,240,0.5);box-shadow:0 34px 100px rgba(0,0,0,0.6),0 0 80px rgba(33,223,240,0.12)">
+      <div style="position:relative;min-height:340px;overflow:hidden;border-right:1px solid rgba(160,220,235,0.1);background:#EAF2F6">
+        <img src="{{ featured.img }}" alt="{{ featured.imgAlt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;box-sizing:border-box">
+        <span style="position:absolute;left:20px;top:20px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.28em;color:#04070C;background:#21DFF0;padding:8px 14px;font-weight:500">LATEST BRIEF</span>
+        <span style="position:absolute;left:14px;bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.16em;color:rgba(4,7,12,0.55)">{{ featured.imgCredit }}</span>
+      </div>
+      <div data-mob="feat-body" style="padding:48px 46px;display:flex;flex-direction:column;gap:24px;justify-content:center">
+        <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.24em;color:#21DFF0">
+          <span>{{ featured.category }}</span>
+          <span style="width:4px;height:4px;background:#5A6B77"></span>
+          <span style="color:#8FA3B0">{{ featured.date }}</span>
+        </div>
+        <h2 data-mob="feat-title" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:30px;letter-spacing:.04em;line-height:1.32;color:#EAF2F6">{{ featured.title }}</h2>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#8FA3B0">{{ featured.excerpt }}</p>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#5A6B77">{{ featured.read }}</span>
+          <span style="width:4px;height:4px;background:#21DFF0"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:#21DFF0">READ BRIEF →</span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ============ ARCHIVE LIST ============ -->
+  <section data-screen-label="Archive" style="position:relative;z-index:2;padding:20px 48px 110px;max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:8px;padding-bottom:22px;border-bottom:1px solid rgba(160,220,235,0.12)">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">ARCHIVE</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.24em;color:#5A6B77">PAST BRIEFINGS · MOST RECENT FIRST</span>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ archive }}" as="b" hint-placeholder-count="6">
+        <a href="{{ b.url }}" data-mob="row" style="display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:32px;padding:30px 8px;border-bottom:1px solid rgba(160,220,235,0.1);transition:background .25s,padding-left .25s" style-hover="background:rgba(10,20,32,0.6)">
+          <div data-mob="row-meta" style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#EAF2F6">{{ b.date }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;color:#21DFF0">{{ b.category }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;letter-spacing:.03em;line-height:1.4;color:#EAF2F6">{{ b.title }}</h3>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:#8FA3B0;max-width:640px">{{ b.excerpt }}</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;white-space:nowrap">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5A6B77">{{ b.read }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#21DFF0">→</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="position:relative;z-index:2;border-top:1px solid rgba(160,220,235,0.1);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:#04070C">
+    <div style="display:flex;align-items:center;gap:9px">
+      <span style="display:block;width:3px;height:18px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
+      <button onClick="{{ logOut }}" style="margin-left:18px;background:none;border:1px solid rgba(160,220,235,0.18);color:#8FA3B0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;padding:7px 14px;cursor:pointer" style-hover="color:#21DFF0;border-color:rgba(33,223,240,0.4)">LOG OUT</button>
+    </div>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5A6B77">© 2026 VERTICAL ADVISORY · ALL SYSTEMS NOMINAL</span>
+    <a href="brand-system.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) {
+      const els = Array.from(document.querySelectorAll('[data-mob="row"], section[data-screen-label="Featured"] > a'));
+      this._io = new IntersectionObserver((entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'none';
+            this._io.unobserve(en.target);
+          }
+        }
+      }, { threshold: 0.1 });
+      for (const el of els) {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) continue;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1)';
+        this._io.observe(el);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+  }
+
+  renderVals() {
+    const all = Component.BRIEFINGS;
+    return {
+      logOut: () => { sessionStorage.removeItem('vertical_auth'); location.reload(); },
+      count: String(all.length).padStart(2, '0'),
+      featured: all[0],
+      archive: all.slice(1)
+    };
+  }
+}
+
+Component.BRIEFINGS = [
+  {
+    date: 'Q2 2026',
+    category: 'SECURITY & DEFENSE',
+    title: 'The (un)shared understanding on space threats: the EU invests to increase common awareness of risks and counterspace capabilities.',
+    excerpt: 'Brussels is funding a common operating picture for orbital threats. We read the doctrine behind the demand and what it means for dual-use operators and their investors.',
+    read: '12 MIN READ',
+    img: 'https://defence-industry-space.ec.europa.eu/sites/default/files/styles/embed_large_2x/public/2023-03/Infographics%20-%20Threats%20in%20the%20space%20domain.png?itok=-GpYOc2a',
+    imgAlt: 'European Commission infographic: threats in the space domain',
+    imgCredit: '© EUROPEAN COMMISSION',
+    url: 'latest-brief.html'
+  },
+  {
+    date: 'Q1 2026',
+    category: 'INVESTORS',
+    title: 'Where the capital actually went: mapping 2025 space venture flows against realized milestones.',
+    excerpt: 'Headline funding totals hide the divergence between hype and delivery. A milestone-weighted view of who raised, who flew, and who quietly stalled.',
+    read: '9 MIN READ',
+    url: '#'
+  },
+  {
+    date: 'Q4 2025',
+    category: 'GOVERNMENT AGENCIES',
+    title: 'Programme architecture that survives the budget cycle: lessons from a decade of agency roadmaps.',
+    excerpt: 'Why the most technically sound programmes still fail politically — and the design principles that let a mandate outlast the administration that funded it.',
+    read: '11 MIN READ',
+    url: '#'
+  },
+  {
+    date: 'Q3 2025',
+    category: 'INDUSTRY',
+    title: 'The supply-chain squeeze: what smallsat integrators learned when the second source disappeared.',
+    excerpt: 'Consolidation upstream is quietly rewriting the risk profile of primes. Practical positioning for operators exposed to single points of failure.',
+    read: '8 MIN READ',
+    url: '#'
+  },
+  {
+    date: 'Q2 2025',
+    category: 'CROSS-SECTOR',
+    title: 'Insuring the uninsurable: parametric coverage and the new economics of orbital risk.',
+    excerpt: 'As data-driven, automatic-payout coverage matures, the boundary between technical diligence and underwriting is dissolving. What it changes for every stakeholder.',
+    read: '10 MIN READ',
+    url: '#'
+  },
+  {
+    date: 'Q1 2025',
+    category: 'INDUSTRY',
+    title: 'From first employee to NYSE: an anatomy of a five-year smallsat scale-up.',
+    excerpt: 'A candid teardown of the decisions — hiring, capital, and manufacturing — that compound into enterprise value, drawn from programmes we helped build.',
+    read: '13 MIN READ',
+    url: '#'
+  }
+];
+</script>
+</body>
+</html>

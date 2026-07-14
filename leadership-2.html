@@ -79,7 +79,9 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
         <sc-for list="{{ founders }}" as="p" hint-placeholder-count="2">
           <article style="background:#070D14;border:1px solid rgba(160,220,235,0.12);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .25s" style-hover="border-color:rgba(33,223,240,0.4)">
             <div style="position:relative;height:380px;filter:grayscale(1)">
+              <div style="width:100%;height:100%;transform:scale({{ p.scale }});transform-origin:center">
               <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="rect" src="{{ p.src }}" placeholder="{{ p.placeholder }}" hint-size="100%,380px"></x-import>
+              </div>
               <div style="position:absolute;left:0;bottom:0;right:0;height:120px;background:linear-gradient(180deg,rgba(7,13,20,0) 0%,rgba(7,13,20,0.9) 100%);pointer-events:none"></div>
             </div>
             <div data-mob="founder-body" style="padding:36px 40px 40px;display:flex;flex-direction:column;gap:16px">
@@ -108,22 +110,41 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
         <p style="margin:0;max-width:380px;font-size:14px;line-height:1.7;color:#8FA3B0">Specialist depth assembled per engagement — capital markets, procurement, regulatory and legal.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:rgba(160,220,235,0.1);border:1px solid rgba(160,220,235,0.1)">
-        <sc-for list="{{ partners }}" as="p" hint-placeholder-count="5">
+        <sc-for list="{{ partners }}" as="p" hint-placeholder-count="4">
+          <sc-if value="{{ p.cta }}">
+            <article style="background:#0A1420;padding:36px 32px;display:flex;flex-direction:column;gap:16px;justify-content:center">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:#21DFF0">BECOME A PARTNER</span>
+              <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:.1em;color:#EAF2F6">WORK WITH US</h3>
+              <p style="margin:0;font-size:14px;line-height:1.65;color:#8FA3B0">Want to become a partner? <a href="contact.html" style="color:#21DFF0;font-weight:500" style-hover="color:#7FEDF7">Contact us →</a></p>
+            </article>
+          </sc-if>
+          <sc-if value="{{ p.name }}">
           <article style="background:#070D14;padding:36px 32px;display:flex;flex-direction:column;gap:18px;transition:background .25s" style-hover="background:#0A1420">
             <div style="display:flex;align-items:center;gap:18px">
-              <div style="width:72px;height:72px;flex:none">
-                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="circle" placeholder="Photo" hint-size="72px,72px"></x-import>
-              </div>
+              <sc-if value="{{ p.logo }}">
+                <div style="width:96px;height:56px;flex:none;display:flex;align-items:center;justify-content:center;background:{{ p.logoBg }};border:1px solid rgba(160,220,235,0.12);border-radius:6px;padding:{{ p.logoPad }};box-sizing:border-box">
+                  <img src="{{ p.logo }}" alt="{{ p.name }}" style="max-width:100%;max-height:100%;object-fit:contain">
+                </div>
+              </sc-if>
+              <sc-if value="{{ p.photo }}" hint-placeholder-val="{{ true }}">
+                <div style="width:72px;height:72px;flex:none">
+                  <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.slotId }}" shape="circle" placeholder="Photo" hint-size="72px,72px"></x-import>
+                </div>
+              </sc-if>
               <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
                 <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:17px;letter-spacing:.08em;color:#EAF2F6">{{ p.name }}</h3>
                 <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;color:#21DFF0">{{ p.role }}</span>
               </div>
             </div>
             <p style="margin:0;font-size:13px;line-height:1.65;color:#8FA3B0">{{ p.bio }}</p>
+            <sc-if value="{{ p.url }}">
+              <a href="{{ p.url }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#21DFF0;margin-top:auto" style-hover="color:#7FEDF7">{{ p.site }} →</a>
+            </sc-if>
           </article>
+          </sc-if>
         </sc-for>
       </div>
-      <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5A6B77">NAMES AND BIOS IN THIS SECTION ARE PLACEHOLDERS · DRAG PHOTOS ONTO THE PORTRAIT SLOTS</p>
+      <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;color:#5A6B77">PARTNER ROSTER SHOWN IS ILLUSTRATIVE</p>
     </div>
   </section>
 
@@ -137,11 +158,6 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
       <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;color:#04070C;background:#21DFF0;padding:18px 40px;font-weight:500;transition:all .2s;box-shadow:0 0 40px rgba(33,223,240,0.25)" style-hover="background:#7FEDF7">INITIATE CONTACT</a>
     </div>
   </section>
-
-  <!-- ============ SAMPLE BUTTON ============ -->
-  <div data-screen-label="Sample" style="position:relative;z-index:2;display:flex;justify-content:center;padding:40px 22px;background:#04070C;border-top:1px solid rgba(160,220,235,0.1)">
-    <a href="leadership-2.html" style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.28em;color:#fff;background:#E5352B;padding:18px 44px;font-weight:500;border-radius:4px;transition:all .2s;box-shadow:0 0 32px rgba(229,53,43,0.4)" style-hover="background:#F5514A">SAMPLE</a>
-  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer data-screen-label="Footer" style="position:relative;z-index:2;border-top:1px solid rgba(160,220,235,0.1);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
@@ -162,6 +178,7 @@ class Component extends DCLogic {
       founders: [
         {
           slotId: 'founder-fabio',
+          scale: 0.97,
           src: 'fabio-nichele.png',
           placeholder: 'Drop Fabio\u2019s portrait',
           name: 'FΛBIO NICHELE',
@@ -171,6 +188,7 @@ class Component extends DCLogic {
         },
         {
           slotId: 'founder-marco',
+          scale: 1,
           src: 'marco-villa.png',
           placeholder: 'Drop Marco\u2019s portrait',
           name: 'MΛRCO VILLΛ',
@@ -180,11 +198,10 @@ class Component extends DCLogic {
         }
       ],
       partners: [
-        { slotId: 'partner-1', name: 'PARTNER NAME', role: 'PARTNER · CAPITAL MARKETS', bio: 'Advises founders and funds on fundraising strategy, valuation, and investor relations across the launch economy.' },
-        { slotId: 'partner-2', name: 'PARTNER NAME', role: 'PARTNER · DEFENSE & PROCUREMENT', bio: 'Former programme director; guides dual-use positioning and sovereign procurement processes end to end.' },
-        { slotId: 'partner-3', name: 'ADVISOR NAME', role: 'SENIOR ADVISOR · TECHNOLOGY', bio: 'Propulsion and systems engineering veteran; provides independent technical diligence for boards and investors.' },
-        { slotId: 'partner-4', name: 'ADVISOR NAME', role: 'SENIOR ADVISOR · REGULATORY', bio: 'Specialist in spectrum, licensing, and launch authorization across EU and US regimes.' },
-        { slotId: 'partner-5', name: 'COUNSEL NAME', role: 'LEGAL COUNSEL', bio: 'Counsel on corporate structuring, IP, and cross-border agreements for space ventures and their investors.' }
+        { logo: 'https://www.cmfc.it/logo.jpg', logoBg: '#EAF2F6', logoPad: '9px', name: 'STUDIO CMFC', role: 'PARTNER · TAX & CORPORATE', bio: 'Chartered accountants in Milan and Turin. Tax, corporate and cross-border advisory for high-growth ventures; member of the Nexia International network.', url: 'https://www.cmfc.it', site: 'CMFC.IT' },
+        { logo: 'legance-logo.png', logoBg: '#EAF2F6', logoPad: '2px', name: 'LEGANCE', role: 'PARTNER · LEGAL COUNSEL', bio: 'Independent Italian law firm founded in 2007. Corporate, capital-markets and cross-border counsel to businesses and institutions.', url: 'https://www.legance.com', site: 'LEGANCE.COM' },
+        { logo: 'https://orbway.co/static/images/logos/wordmark_white.png', logoBg: '#0A1420', logoPad: '9px', name: 'ORBWAY', role: 'PARTNER · SPACE INSURANCE', bio: 'Parametric insurance for spacecraft — objective, data-driven coverage with transparent pricing and automatic payouts.', url: 'https://orbway.co', site: 'ORBWAY.CO' },
+        { cta: true }
       ]
     };
   }

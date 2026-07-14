@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#04070C;font-family:'IBM Plex Sans',sans-serif;color:#EAF2F6}
+a{color:#21DFF0;text-decoration:none}
+a:hover{color:#7FEDF7}
+::selection{background:rgba(33,223,240,.25)}
+@keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(40px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:720px){
+[data-mob="hide"]{display:none!important}
+nav[data-screen-label="Nav"]{padding:16px 22px!important}
+header[data-screen-label="Brief Hero"]{padding:118px 22px 34px!important}
+header[data-screen-label="Brief Hero"] h1{font-size:26px!important}
+[data-mob="hero-img"]{height:220px!important}
+article[data-screen-label="Body"]{padding:44px 22px 70px!important}
+article[data-screen-label="Body"] h2{font-size:22px!important}
+article[data-screen-label="Body"] h3{font-size:16px!important}
+article[data-screen-label="Body"] p{font-size:15px!important}
+footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:center!important;text-align:center!important}
+}
+</style>
+</helmet>
+
+<x-import component-from-global-scope="auth-gate" from="./auth-gate.js" hint-size="0,0"></x-import>
+
+<div style="min-height:100vh;background:#04070C;position:relative;overflow:hidden">
+
+  <div style="position:fixed;inset:-60px 0;pointer-events:none;z-index:0;background-image:radial-gradient(1px 1px at 12% 22%,rgba(234,242,246,.32) 50%,transparent 51%),radial-gradient(1px 1px at 78% 14%,rgba(234,242,246,.26) 50%,transparent 51%),radial-gradient(1.4px 1.4px at 45% 12%,rgba(33,223,240,.38) 50%,transparent 51%),radial-gradient(1px 1px at 22% 86%,rgba(234,242,246,.2) 50%,transparent 51%);animation:starDrift 60s linear infinite alternate"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav data-screen-label="Nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:14px;padding:16px clamp(20px,4vw,48px);background:rgba(4,7,12,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(160,220,235,0.1)">
+    <a href="index.html" style="display:flex;align-items:center;gap:9px;white-space:nowrap;flex:none">
+      <span style="display:block;width:3px;height:22px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
+    </a>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:clamp(14px,2.5vw,40px)">
+      <a href="index.html#sectors" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
+      <a href="briefings.html" aria-current="page" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#EAF2F6;border-bottom:1px solid #21DFF0;padding-bottom:3px;white-space:nowrap">INTELLIGENCE</a>
+      <a href="leadership.html" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
+      <a href="index.html#mission-control" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
+      <a href="contact.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none;transition:all .2s" style-hover="background:rgba(33,223,240,0.1);color:#7FEDF7">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header data-screen-label="Brief Hero" style="position:relative;z-index:2;padding:150px 48px 30px;max-width:840px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <a href="briefings.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.26em;color:#8FA3B0" style-hover="color:#21DFF0">← BRIEFINGS ARCHIVE</a>
+      <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.24em">
+        <span style="color:#04070C;background:#21DFF0;padding:7px 13px;font-weight:500">LATEST BRIEF</span>
+        <span style="color:#21DFF0">SECURITY &amp; DEFENSE</span>
+        <span style="width:4px;height:4px;background:#5A6B77"></span>
+        <span style="color:#8FA3B0">Q2 2026</span>
+      </div>
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:34px;letter-spacing:.03em;line-height:1.28;color:#EAF2F6">EU investments to increase common awareness of risks and counterspace capabilities</h1>
+      <div style="display:flex;align-items:center;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#5A6B77">
+        <span>BRIEFING NOTE · JULY 2026</span>
+        <span style="width:4px;height:4px;background:#21DFF0"></span>
+        <span>12 MIN READ</span>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:840px;margin:0 auto;padding:0 48px" data-mob="hide-pad">
+    <div data-mob="hero-img" style="position:relative;height:440px;overflow:hidden;border:1px solid rgba(160,220,235,0.12);background:#EAF2F6">
+      <img src="https://defence-industry-space.ec.europa.eu/sites/default/files/styles/embed_large_2x/public/2023-03/Infographics%20-%20Threats%20in%20the%20space%20domain.png?itok=-GpYOc2a" alt="European Commission infographic: threats in the space domain" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px;box-sizing:border-box">
+      <span style="position:absolute;left:14px;bottom:12px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.16em;color:rgba(4,7,12,0.55)">INFOGRAPHIC · © EUROPEAN COMMISSION</span>
+    </div>
+  </div>
+
+  <!-- ============ BODY ============ -->
+  <article data-screen-label="Body" style="position:relative;z-index:2;max-width:840px;margin:0 auto;padding:56px 48px 90px;display:flex;flex-direction:column;gap:26px">
+
+    <h2 style="margin:8px 0 2px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.06em;color:#EAF2F6">Executive overview</h2>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The European Union is moving from a mostly civil space governance model to a more explicit security and defense posture, with recent measures aimed at improving shared awareness of orbital threats, strengthening resilience of critical space systems, and funding space-related defense capabilities.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">Over the last six months, the clearest signals have come from three areas: the April 2026 European Defense Fund allocation supporting a European Space Shield, the continued rollout of IRIS² as a sovereign secure-connectivity system, and the policy follow-through around the EU Space Act and the EU Space Strategy for Security and Defense.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">This evolution matters because the threat environment is no longer hypothetical. Interference, cyberattacks, jamming, spoofing, debris risks and hostile counterspace capabilities now affect both military and civilian dependence on satellites. The EU's answer is not primarily offensive. It is centred on resilience, regulation, pooled investment, common situational awareness and gradual defence-industrial coordination across member states.</p>
+
+    <h2 style="margin:28px 0 2px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.06em;color:#EAF2F6">Facts</h2>
+
+    <h3 style="margin:10px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;letter-spacing:.05em;color:#21DFF0">European Defence Fund: space is now a named flagship</h3>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">On 14 April 2026, the European Commission announced that it would invest €1.07 billion in 57 new projects under the 2025 European Defence Fund calls. The Commission stated that these selected projects support four major defence flagships: the European Drone Defence Initiative, Eastern Flank Watch, the European Air Shield and the European Space Shield. This is one of the clearest recent examples of the EU treating space security not only as a strategic concept, but as a funded component of defence readiness.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The announcement is politically important even though the public communication did not provide a detailed line-by-line financial breakout for the space element. It shows that space surveillance, protection and resilience are entering the same investment conversation as air defence, unmanned systems and territorial monitoring.</p>
+
+    <h3 style="margin:10px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;letter-spacing:.05em;color:#21DFF0">IRIS²: from concept to implementation</h3>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The IRIS² programme remains the EU's most tangible space-security investment vehicle. In October 2024, the Commission awarded the concession contract to the SpaceRISE consortium, and the contract structure was defined as a 12-year public-private partnership to develop, deploy and operate a system of over 290 satellites and associated ground infrastructure. The system is intended to provide governmental services by 2030 while also enabling commercial services, making it both a sovereign infrastructure project and a resilience instrument.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The broader Union Secure Connectivity Programme for 2023-2027 has a budget of €2.4 billion, and IRIS² is designed to deliver secure communications for EU institutions and member states while reducing dependence on non-European systems for critical connectivity. In strategic terms, IRIS² is not itself a counterspace weapon. Its value lies in continuity of service, cybersecurity, redundancy and secure command links if European communication networks face disruption or coercion.</p>
+
+    <h3 style="margin:10px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;letter-spacing:.05em;color:#21DFF0">Space situational awareness and shared threat understanding</h3>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The EU continues to frame Space Situational Awareness as a core security function. EUSPA states that SSA is an essential component of the EU Space Programme because it provides knowledge and understanding about space hazards that affect communications, navigation and observation services used by European societies and economies. This language is important because it links technical surveillance and tracking functions directly to civil resilience and strategic autonomy.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The EU Space Strategy for Security and Defence adds the policy architecture behind this logic. It calls for a shared understanding of space threats, expansion of the space threat response mechanism already used for Galileo, stronger protection of EU space systems and the development of dual-use space capabilities for security and defense purposes. In other words, the Union is trying to turn fragmented national awareness into a more common operational picture.</p>
+
+    <h2 style="margin:28px 0 2px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:.06em;color:#EAF2F6">A distinct European Way</h2>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The EU is acting seriously, but in a distinctly European way. Rather than openly pursuing offensive counterspace systems, it is building a layered model based on regulation, secure infrastructure, defence-industrial funding and common situational awareness. This approach is coherent because many of the real threats to European space services are hybrid or ambiguous rather than overt acts of war: jamming, cyber intrusion, signal spoofing, debris creation and dual-use interference sit precisely in that grey zone.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The strength of the EU model is that it treats space security as a system problem. IRIS² addresses sovereign connectivity and redundancy; SSA improves detection and tracking; the Space Strategy defines common objectives; and the EDF provides a path for industrial scaling. This is more sustainable than a purely rhetorical response, and it also fits the Union's institutional DNA of linking market rules, infrastructure and cross-border coordination.</p>
+
+    <div style="border-left:2px solid #21DFF0;padding:6px 0 6px 26px;margin:8px 0">
+      <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:19px;line-height:1.65;letter-spacing:.02em;color:#EAF2F6">The weakness of the European Way might reside in speed and operational clarity — the EU appears ahead on framework-building but behind on visible, hard-power, operational advantage.</p>
+    </div>
+
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">Public announcements increasingly use strategic language, but they still provide less transparency than analysts may want on how much funding is going into deployable protective capabilities, how responsibilities are divided between the Commission, EUSPA, ESA and member states, and how quickly common awareness can become common action.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The most recent evidence suggests that the European Union now clearly recognises counterspace risks as a security and investment problem, not only a regulatory or technological one. The April 2026 EDF announcement, the ongoing IRIS² deployment model and the EU's expanding emphasis on space situational awareness together show a transition from policy intent to funded implementation.</p>
+    <p style="margin:0;font-size:16.5px;line-height:1.8;color:#B9C7D0">The EU is certainly building a resilience-first counterspace posture: it seeks to know more, coordinate better, harden systems, secure communications and reduce strategic dependence. That is a credible and rational approach, but its success will depend on whether those frameworks produce operational capability fast enough to match a counterspace environment that is evolving quickly and becoming more contested.</p>
+
+    <!-- Sources -->
+    <div style="margin-top:34px;padding-top:30px;border-top:1px solid rgba(160,220,235,0.14);display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.3em;color:#21DFF0">SOURCES</span>
+      <sc-for list="{{ sources }}" as="s" hint-placeholder-count="6">
+        <a href="{{ s.url }}" target="_blank" rel="noopener" style="display:flex;gap:14px;align-items:baseline;padding:4px 0" style-hover="color:#7FEDF7">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:#5A6B77;flex:none">{{ s.n }}</span>
+          <span style="font-size:13.5px;line-height:1.6;color:#8FA3B0">{{ s.label }} <span style="color:#21DFF0;font-family:'IBM Plex Mono',monospace;font-size:11px">→</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </article>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="position:relative;z-index:2;border-top:1px solid rgba(160,220,235,0.1);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:#04070C">
+    <div style="display:flex;align-items:center;gap:9px">
+      <span style="display:block;width:3px;height:18px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
+      <button onClick="{{ logOut }}" style="margin-left:18px;background:none;border:1px solid rgba(160,220,235,0.18);color:#8FA3B0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;padding:7px 14px;cursor:pointer" style-hover="color:#21DFF0;border-color:rgba(33,223,240,0.4)">LOG OUT</button>
+    </div>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5A6B77">© 2026 VERTICAL ADVISORY · ALL SYSTEMS NOMINAL</span>
+    <a href="brand-system.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      logOut: () => { sessionStorage.removeItem('vertical_auth'); location.reload(); },
+      sources: [
+        { n: '01', label: 'European Commission — EU Space Strategy for Security and Defence', url: 'https://defence-industry-space.ec.europa.eu/eu-space/eu-space-strategy-security-and-defence_en' },
+        { n: '02', label: 'European Commission — Commission to invest €1.07 billion in 57 defence projects supporting European readiness and future capabilities', url: 'https://defence-industry-space.ec.europa.eu/commission-invest-eu107-billion-57-defence-projects-supporting-european-readiness-future_en' },
+        { n: '03', label: 'European Commission — IRIS²: the European Commission awards the concession contract to SpaceRISE consortium', url: 'https://defence-industry-space.ec.europa.eu/iris2-european-commission-awards-concession-contract-spacerise-consortium-2024-10-31_en' },
+        { n: '04', label: 'European Commission (Digital Strategy) — IRIS²: concession contract awarded to SpaceRISE consortium', url: 'https://digital-strategy.ec.europa.eu/en/news/iris2-european-commission-awards-concession-contract-spacerise-consortium' },
+        { n: '05', label: 'EUSPA — SSA | EU Agency for the Space Programme', url: 'https://www.euspa.europa.eu/eu-space-programme/ssa' },
+        { n: '06', label: 'Secure World Foundation — 2026 Global Counterspace Capabilities Report', url: 'https://www.swfound.org/publications-and-reports/2026-global-counterspace-capabilities-report' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
