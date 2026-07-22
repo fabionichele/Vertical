@@ -167,7 +167,14 @@ class Component extends DCLogic {
       logOut: () => { sessionStorage.removeItem('vertical_auth'); location.reload(); },
       count: String(all.length).padStart(2, '0'),
       featured: all[0],
-      archive: all.slice(1)
+      archive: [{
+        date: 'Q2 2026',
+        category: 'SECURITY & DEFENSE',
+        title: 'EU investments to increase common awareness of risks and counterspace capabilities',
+        excerpt: 'How Brussels is turning fragmented national awareness into a common operating picture for orbital threats.',
+        read: '12 MIN READ',
+        url: 'latest-brief.html'
+      }]
     };
   }
 }
