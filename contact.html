@@ -46,7 +46,6 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
       <a href="index.html#sectors" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">SECTORS</a>
       <a href="briefings.html" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">INTELLIGENCE</a>
       <a href="leadership.html" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">LEADERSHIP</a>
-      <a href="index.html#mission-control" data-mob="hide" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#8FA3B0;white-space:nowrap" style-hover="color:#EAF2F6">CONNECT</a>
       <a href="#" aria-current="page" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:12px 22px;white-space:nowrap;flex:none">CONTACT</a>
     </div>
   </nav>
@@ -69,7 +68,7 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
         <div style="border:1px solid rgba(33,223,240,0.35);background:#070D14;padding:56px 48px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
           <span style="width:8px;height:8px;border-radius:50%;background:#21DFF0;box-shadow:0 0 12px rgba(33,223,240,0.8)"></span>
           <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;letter-spacing:.1em;color:#EAF2F6">REQUEST RECEIVED</h2>
-          <p style="margin:0;max-width:420px;font-size:14.5px;line-height:1.75;color:#8FA3B0">Telemetry logged. A founding partner will respond within one business day at the address provided.</p>
+          <p style="margin:0;max-width:420px;font-size:14.5px;line-height:1.75;color:#8FA3B0">Your email client has opened with the compiled request addressed to info@vertical-advisory.com — press send to deliver it. A founding partner will respond within one business day.</p>
           <a href="index.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.26em;color:#21DFF0;border:1px solid rgba(33,223,240,0.5);padding:14px 28px;margin-top:8px" style-hover="background:rgba(33,223,240,0.1)">RETURN TO BASE</a>
         </div>
       </sc-if>
@@ -167,7 +166,7 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
                 <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;color:#FF8A8A">{{ formError }}</span>
               </sc-if>
             </div>
-            <p style="margin:0;font-size:11.5px;line-height:1.7;color:#5A6B77">Fields marked * are required. You can also reach us directly at <a href="mailto:contact@vertical-advisory.space">contact@vertical-advisory.space</a>.</p>
+            <p style="margin:0;font-size:11.5px;line-height:1.7;color:#5A6B77">Fields marked * are required. You can also reach us directly at <a href="mailto:info@vertical-advisory.com">info@vertical-advisory.com</a>.</p>
           </div>
         </form>
       </sc-if>
@@ -180,8 +179,8 @@ footer[data-screen-label="Footer"]{padding:28px 22px!important;justify-content:c
       <span style="display:block;width:3px;height:18px;background:linear-gradient(180deg,#EAFBFD 0%,#21DFF0 45%,rgba(33,223,240,0) 100%)"></span>
       <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;color:#EAF2F6">VERTICΛL<span style="color:#21DFF0">.</span></span>
     </a>
-    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5A6B77">© 2026 VERTICAL ADVISORY · ALL SYSTEMS NOMINAL</span>
-    <a href="brand-system.html" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#5A6B77">© 2026 VERTICAL ADVISORY</span>
+    <a href="brand-system.html" style="display:none;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8FA3B0" style-hover="color:#21DFF0">BRAND SYSTEM →</a>
   </footer>
 </div>
 
@@ -215,6 +214,24 @@ class Component extends DCLogic {
       this.setState({ error: 'Please confirm consent to be contacted.' });
       return;
     }
+    const labels = {
+      fullName: 'Full name', role: 'Role / title', organization: 'Organization',
+      email: 'Email', phone: 'Phone', country: 'Country / region',
+      topic: 'Topic', stage: 'Stage', description: 'Description of the request',
+      timeline: 'Preferred timeline', referral: 'How did you hear about us'
+    };
+    const lines = ['New contact request — VERTICAL', '', ];
+    for (const k in labels) {
+      const v = (f[k] || '').toString().trim();
+      if (v) lines.push(labels[k] + ': ' + v);
+    }
+    lines.push('', 'Consent to be contacted: Yes', 'Submitted: ' + new Date().toLocaleString());
+    const subject = 'Contact request — ' + f.fullName + (f.organization ? ' (' + f.organization + ')' : '');
+    const mailto = 'mailto:info@vertical-advisory.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(lines.join('\n'));
+    // Open the user's mail client with the compiled request pre-filled.
+    window.location.href = mailto;
     this.setState({ error: '', submitted: true });
   };
 
